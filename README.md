@@ -10,7 +10,7 @@ by adding `genserver_practise` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:genserver_practise, "~> 0.1.0"}
+    {:todolist_server, "~> 0.1.0"}
   ]
 end
 ```

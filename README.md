@@ -1,6 +1,6 @@
-# GenserverPractise
+# TodoList using GenServer
 
-**TODO: Add description**
+**Basic TodoList application using GenServer of ELixir**
 
 ## Installation
 

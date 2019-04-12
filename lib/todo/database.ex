@@ -13,8 +13,9 @@ defmodule Todo.Database do
   end
 
   def handle_call({:get_worker, name}, _ , workerpool) do
-    worker_id = :erlang.phash(name, 3)
-    {:reply, Map.get(workerpool, worker_id), workerpool}
+    worker_id = :erlang.phash2(name, 3)
+    worker = Map.get(workerpool, worker_id)
+    {:reply, worker, workerpool}
   end
 
   def store(key, todo_list) do
@@ -33,7 +34,7 @@ defmodule Todo.Database do
     GenServer.call(__MODULE__, {:get_worker, list_name})
   end
 
-  defp start_workers(db_folder) do
+  def start_workers(db_folder) do
     Enum.reduce(0..2, %{}, fn index , worker_list ->
                                        {:ok , pid} = Todo.DatabaseWorker.start(db_folder)
                                        Map.put(worker_list, index, pid)  end)

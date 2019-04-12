@@ -34,8 +34,6 @@ defmodule Todo.Server do
   end
 
   def handle_cast({:add , entry }, {name , current_state}) do
-    IO.inspect(name)
-    IO.inspect(current_state)
     new_list = Todo.List.add_entry(current_state, entry)
     Todo.Database.store(name, new_list)
     {:noreply , {name , new_list} }
